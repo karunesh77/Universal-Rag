@@ -25,15 +25,14 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 # Agar DATABASE_URL nahi hai to default use karo (Development ke liye)
 if not DATABASE_URL:
-    # SQLite (File-based, simple database - development ke liye)
-    # SQLite kis kam aata hai:
-    # - Setup easy hai
-    # - Koi server setup nahi
-    # - Testing ke liye perfect
-    # - Production ke liye suitable nahi (performance issue)
-    DATABASE_URL = "sqlite:///./test.db"
-    print("WARNING: DATABASE_URL not found in .env")
-    print("Using SQLite for development: sqlite:///./test.db")
+    # Check if running on AWS Lambda (Lambda has writable /tmp only)
+    if os.getenv("AWS_LAMBDA_FUNCTION_NAME"):
+        DATABASE_URL = "sqlite:////tmp/rag_system.db"
+        print("Running on AWS Lambda: Using SQLite in /tmp/")
+    else:
+        DATABASE_URL = "sqlite:///./test.db"
+        print("WARNING: DATABASE_URL not found in .env")
+        print("Using SQLite for development: sqlite:///./test.db")
 else:
     # Check karo agar PostgreSQL hai ya SQLite
     if "postgresql" in DATABASE_URL:

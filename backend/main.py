@@ -20,6 +20,12 @@ from dotenv import load_dotenv
 # jaise environment variables read karna
 import os
 
+# Mangum = AWS Lambda adapter for ASGI apps
+try:
+    from mangum import Mangum
+except ImportError:
+    Mangum = None
+
 # Database initialization - tables create karne ke liye
 from backend.database import init_db
 
@@ -145,6 +151,13 @@ async def health_check():
 # =====================================================
 # STEP 5: Main Block - Ye jab directly file run ho
 # =====================================================
+# =====================================================
+# AWS LAMBDA HANDLER
+# =====================================================
+# Mangum wraps FastAPI for AWS Lambda + API Gateway
+if Mangum:
+    handler = Mangum(app, lifespan="off")
+
 if __name__ == "__main__":
     # Uvicorn = ASGI server (ye actual web server hai)
     # Jaise Apache ya Nginx par ye Python mein

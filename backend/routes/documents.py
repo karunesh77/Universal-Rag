@@ -39,7 +39,9 @@ router = APIRouter(
     }
 )
 
-UPLOAD_DIR = os.getenv("UPLOAD_DIRECTORY", "./uploads")
+# Lambda only has /tmp writable
+_default_upload = "/tmp/uploads" if os.getenv("AWS_LAMBDA_FUNCTION_NAME") else "./uploads"
+UPLOAD_DIR = os.getenv("UPLOAD_DIRECTORY", _default_upload)
 
 
 def ensure_upload_dir():
