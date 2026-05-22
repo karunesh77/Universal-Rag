@@ -97,7 +97,23 @@ app.include_router(queries_router)
 # STEP 3.7: STARTUP EVENT - Database Initialize
 # =====================================================
 # Jab app start hota hai, database tables create karna
-# @app.on_event("startup") = jab server start ho
+# Lambda pe lifespan events nahi chalte, so init at module level too
+import sys
+try:
+    init_db()
+    print("[OK] Database initialized at module load!", flush=True)
+    sys.stdout.flush()
+except Exception as e:
+    print(f"[ERROR] Module-level DB init failed: {type(e).__name__}: {e}", flush=True)
+    sys.stdout.flush()
+    # Force create tables directly as fallback
+    try:
+        from backend.models import Base
+        from backend.database import engine
+        Base.metadata.create_all(bind=engine)
+        print("[OK] Fallback DB init succeeded!", flush=True)
+    except Exception as e2:
+        print(f"[ERROR] Fallback DB init also failed: {e2}", flush=True)
 
 @app.on_event("startup")
 async def startup_event():

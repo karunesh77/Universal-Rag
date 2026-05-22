@@ -47,8 +47,13 @@ else:
 # Connection pool = Kuch connections ready rakhte hain (reuse ke liye)
 
 # SQLAlchemy engine create karo
+_engine_kwargs = {}
+if DATABASE_URL.startswith("sqlite"):
+    _engine_kwargs["connect_args"] = {"check_same_thread": False}
+
 engine = create_engine(
     DATABASE_URL,
+    **_engine_kwargs,
     # echo=True,  # SQL queries print kare (debugging ke liye)
     # pool_pre_ping=True,  # Connection check kare query se pehle
     # pool_size=5,  # Kitne connections ready rakhne hain
@@ -79,6 +84,16 @@ SessionLocal = sessionmaker(
 # Ye function FastAPI ke dependency injection mein use hota hai
 # Har endpoint ko database session dena
 
+_db_initialized = False
+
+def ensure_tables():
+    """Ensure tables exist - call before first DB usage"""
+    global _db_initialized
+    if not _db_initialized:
+        from backend.models import Base
+        Base.metadata.create_all(bind=engine)
+        _db_initialized = True
+
 def get_db() -> Session:
     """
     Database session provide karna FastAPI endpoints ko
@@ -98,12 +113,11 @@ def get_db() -> Session:
     3. Route execute karega
     4. finally block mein session close karega
     """
+    ensure_tables()
     db = SessionLocal()
     try:
-        # Endpoint ko session dena
         yield db
     finally:
-        # Request khatam hone ke baad session close karna
         db.close()
 
 # =====================================================
@@ -130,7 +144,7 @@ def init_db():
     """
     from backend.models import Base
     Base.metadata.create_all(bind=engine)
-    print("Database initialized successfully!")
+    print(f"Database initialized: {list(Base.metadata.tables.keys())}")
 
 # =====================================================
 # DATABASE EXPLANATION
