@@ -1,0 +1,155 @@
+# =====================================================
+# .gitignore - Git Ko Kaunsi Files Ignore Karni Hain
+# =====================================================
+# Ye file GitHub/Git ko kehta hai: "Ye files commit mat karo"
+# Kyun? Kyunki ye files:
+# 1. Secret information contain karti hain
+# 2. Bahut badi hoti hain (unnecessary)
+# 3. System-specific hoti hain
+
+# =====================================================
+# 1. ENVIRONMENT VARIABLES - SECRET FILES
+# =====================================================
+# .env file mein API keys, passwords hote hain
+# Kabhi GitHub par nahi chahiye!
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# =====================================================
+# 2. PYTHON - Virtual Environment aur Cache
+# =====================================================
+# Virtual environment = ek folder jismein Python libraries install hoti hain
+# Ye folder 500+ MB bada hota hai, unnecessary hai git mein
+
+# Virtual environment folders
+venv/
+env/
+ENV/
+.venv
+pyvenv.cfg
+
+# Python cache files (__pycache__ = compiled Python files)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Python distribution files
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
+
+# =====================================================
+# 3. NODE.JS / FRONTEND - Node Modules aur Build
+# =====================================================
+# node_modules = 1000+ MB ka folder
+# Har machine par npm install se ban jata hai, unnecessary hai
+
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build output (Frontend ko compile karne se jo files ban jati hain)
+dist/
+build/
+.next/
+out/
+.cache/
+
+# =====================================================
+# 4. IDE / EDITOR - Development Tool Files
+# =====================================================
+# VS Code settings
+.vscode/
+*.code-workspace
+
+# PyCharm / JetBrains IDE
+.idea/
+*.swp
+*.swo
+*.swn
+*~
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# General editor files
+.DS_Store
+Thumbs.db
+
+# =====================================================
+# 5. DATABASE - Local Development Databases
+# =====================================================
+# Local databases mat push karo
+*.db
+*.sqlite
+*.sqlite3
+*.pgdata
+dump.rdb
+
+# =====================================================
+# 6. UPLOADS - User Uploaded Files
+# =====================================================
+# Users jo PDFs, documents upload karte hain
+# Ye local folders hain, git mein nahi chahiye
+uploads/
+
+# Utility script
+generate_pdf.py
+
+# =====================================================
+# 7. LOGS - Application Logs
+# =====================================================
+# Application logs mat push karo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# =====================================================
+# 8. OS FILES - Operating System Files
+# =====================================================
+# MacOS files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows files
+Thumbs.db
+ehthumbs.db
+
+# =====================================================
+# 9. MISC - Miscellaneous Files
+# =====================================================
+.DS_Store
+*.rar
+*.zip
+*.tar.gz
+.vscode/settings.json
+.vscode/extensions.json

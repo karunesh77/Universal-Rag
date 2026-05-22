@@ -1,0 +1,245 @@
+# =====================================================
+# REQUIREMENTS.TXT - Python Libraries
+# =====================================================
+# Ye file bataati hai: Kaunsi Python libraries chahiye
+# Command: pip install -r requirements.txt
+#
+# Format:
+# library_name==version_number
+#
+# == Matlab exact version (important!)
+# >= Matlab is version ya uske baad ka koi bhi
+#
+# =====================================================
+# PHASES:
+# =====================================================
+# PHASE 1: Basic Backend Setup
+#   ✓ FastAPI, Uvicorn, Pydantic, python-dotenv
+#
+# PHASE 2: Database Setup (IN PROGRESS)
+#   ✓ SQLAlchemy, psycopg2-binary, Alembic
+#   ✓ Models created, Database connection setup
+#
+# PHASE 3: File Upload & Processing
+#   ✓ PyPDF2, pdfplumber, python-docx, openpyxl
+#
+# PHASE 4: Embeddings & Vector DB
+#   ✓ OpenAI, Anthropic, Pinecone, LangChain
+#
+# PHASE 5: RAG Engine
+#   ✓ All AI/ML packages
+#
+# PHASE 6: Frontend (React)
+#   Separate npm packages (see frontend/package.json)
+# =====================================================
+
+# =====================================================
+# 1. CORE FRAMEWORK - Web Server
+# =====================================================
+# FastAPI = Web framework (Flask, Express jaisa)
+# Latest stable version: 0.104.1
+fastapi==0.104.1
+
+# Uvicorn = ASGI server (actual server jo requests handle kare)
+# Jaise Tomcat Java mein, Nginx etc
+uvicorn==0.24.0
+
+# Python-multipart = File upload ke liye
+# Jab user form data bheje (file, text, etc)
+python-multipart==0.0.6
+
+# Pydantic = Data validation (cheek kare data sahi hai ya nahi)
+# Example: Email format sahi hai? Phone number 10 digit ka hai?
+pydantic==2.4.2
+
+# Aiofiles = Asynchronous file handling
+# async = non-blocking (ek request ke liye wait nahi karna)
+aiofiles==23.2.1
+
+# Python-dotenv = .env file se variables padhne ke liye
+python-dotenv==1.0.0
+
+# =====================================================
+# 2. DATABASE - SQL Database
+# =====================================================
+# SQLAlchemy = ORM (Object-Relational Mapping)
+# Matlab: SQL queries likne ki jagah Python mein likho
+# Example: User.query.filter_by(email="test@test.com").all()
+sqlalchemy==2.0.23
+
+# Psycopg2 = PostgreSQL driver
+# Python ko PostgreSQL database ke saath connect karne ke liye
+psycopg2-binary==2.9.9
+
+# Alembic = Database migrations
+# Database schema mein changes karne ke liye (versioning ke saath)
+alembic==1.12.1
+
+# =====================================================
+# 3. CACHING - Redis
+# =====================================================
+# Redis = In-memory cache (bilkul tez)
+# Repeated data ko memory mein store karte hain
+# Database hit nahi hoti = faster response
+redis==5.0.1
+
+# =====================================================
+# 4. AI/LLM SERVICES - AI Models
+# =====================================================
+# OpenAI = OpenAI API client
+# GPT models, embeddings ke liye
+# Text to vector conversion (embeddings)
+openai==1.3.8
+
+# Groq = Ultra-fast LLM inference (Llama 3, DeepSeek, Mixtral)
+# FREE tier: 14,400 requests/day
+groq==0.4.2
+
+# LangChain = LLM orchestration framework
+langchain==0.1.0
+
+# LangChain Groq integration
+langchain-groq==0.1.3
+
+# LangChain community = Extra tools (HuggingFace, Pinecone, etc)
+langchain-community==0.0.20
+
+# =====================================================
+# 5. VECTOR DATABASE - Embeddings Storage
+# =====================================================
+# Pinecone = Vector database client
+# Embeddings (vectors) ko store aur search karne ke liye
+# Fast similarity search
+pinecone-client==2.2.4
+
+# =====================================================
+# 6. FILE PROCESSING - Document Handling
+# =====================================================
+# PyPDF2 = PDF processing
+# PDF se text nikalna, PDF merge/split karna
+PyPDF2==3.0.1
+
+# pdfplumber = Advanced PDF text extraction
+# Better text extraction than PyPDF2
+# Tables, coordinates, etc
+pdfplumber==0.10.3
+
+# pdf2image = PDF to image conversion
+# PDF ko image format mein convert karna
+pdf2image==1.16.3
+
+# Pillow = Image processing
+# JPG, PNG images ko process karna
+# Resize, crop, convert, etc
+pillow==10.1.0
+
+# pytesseract = OCR (Optical Character Recognition)
+# Image se text nialna (scanned documents)
+pytesseract==0.3.10
+
+# python-docx = Word document (.docx) processing
+# .docx files se text nikalna
+# Word documents create/modify karna
+python-docx==0.8.11
+
+# openpyxl = Excel spreadsheet (.xlsx) processing
+# Excel files read/write karna
+openpyxl==3.10.10
+
+# python-pptx = PowerPoint (.pptx) processing
+# PowerPoint slides se content nikalna
+python-pptx==0.6.21
+
+# chardet = Character encoding detection
+# File encoding detect karna (UTF-8, ASCII, etc)
+chardet==5.2.0
+
+# =====================================================
+# 7. UTILITIES - Helpful Libraries
+# =====================================================
+# Requests = HTTP requests
+# External APIs ko call karna
+# GET, POST requests
+requests==2.31.0
+
+# NumPy = Numerical computing
+# Arrays, matrices, mathematical operations
+# AI/ML mein use hota hai
+numpy==1.24.3
+
+# Pandas = Data manipulation
+# CSV, Excel data ko easily process karna
+# Data analysis ke liye
+pandas==2.0.3
+
+# Pydantic-settings = Configuration management
+# Environment-specific settings
+pydantic-settings==2.0.3
+
+# =====================================================
+# 8. EMBEDDINGS - Local Alternative
+# =====================================================
+# Sentence-transformers = Local embedding model
+# OpenAI API ko call nahi karna padta
+# Bilkul offline, sirf CPU se chalti hai
+sentence-transformers==2.2.2
+
+# Torch = PyTorch (Machine Learning framework)
+# Sentence-transformers ko chalane ke liye
+# Deep learning models
+torch==2.0.1
+
+# =====================================================
+# 9. TESTING - Unit Tests
+# =====================================================
+# Pytest = Testing framework
+# Code ke tests likho, verify karo
+pytest==7.4.3
+
+# httpx = HTTP client (testing ke liye)
+# Async HTTP requests
+httpx==0.25.0
+
+# =====================================================
+# 10. LOGGING - Application Logs
+# =====================================================
+# Python-json-logger = Structured logging
+# Logs ko JSON format mein save karna
+# Easy to parse and monitor
+python-json-logger==2.0.7
+
+# =====================================================
+# 11. CORS - Security
+# =====================================================
+# Fastapi-cors = CORS support
+# Frontend-backend communication allow karna
+fastapi-cors==0.0.6
+
+# =====================================================
+# 12. AUTHENTICATION & PASSWORD SECURITY
+# =====================================================
+# Python-jose = JWT token handling
+# JWT tokens generate aur verify karne ke liye
+# Stateless authentication (session nahi)
+python-jose==3.3.0
+
+# Passlib = Password hashing framework
+# Bcrypt jaise hashing algorithms use karna
+# Password securely store karna
+passlib==1.7.4
+
+# Bcrypt = Password hashing algorithm
+# Industry standard, slow hashing (brute force protection)
+bcrypt==4.0.1
+
+# PyJWT = Alternative JWT library (optional)
+# Extra functionality ke liye
+PyJWT==2.8.1
+
+# =====================================================
+# INSTALLATION COMMAND:
+# =====================================================
+# python -m venv venv           # Create virtual environment
+# venv\Scripts\activate         # Activate (Windows)
+# source venv/bin/activate      # Activate (Mac/Linux)
+# pip install -r requirements.txt  # Install all libraries

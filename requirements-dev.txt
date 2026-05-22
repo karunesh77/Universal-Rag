@@ -1,0 +1,52 @@
+# =====================================================
+# REQUIREMENTS FOR DEVELOPMENT (Without DB)
+# =====================================================
+# Core Framework - Web Server
+fastapi==0.104.1
+uvicorn==0.24.0
+python-multipart==0.0.6
+pydantic==2.4.2
+aiofiles==23.2.1
+python-dotenv==1.0.0
+
+# Database & ORM (Install manually later if needed)
+# sqlalchemy==2.0.23
+# psycopg2-binary==2.9.9
+# alembic==1.12.1
+
+# Caching - Redis
+redis==5.0.1
+
+# AI/LLM Services
+openai==1.3.8
+anthropic==0.7.1
+langchain==0.0.352
+langchain-community==0.0.1
+
+# Vector Database
+pinecone-client==2.2.4
+
+# File Processing
+PyPDF2==3.0.1
+pdfplumber==0.10.3
+pillow==10.1.0
+python-docx==0.8.11
+openpyxl==3.10.10
+chardet==5.2.0
+
+# Utilities
+requests==2.31.0
+numpy==1.24.3
+pandas==2.0.3
+pydantic-settings==2.0.3
+
+# Embeddings
+sentence-transformers==2.2.2
+
+# Testing
+pytest==7.4.3
+httpx==0.25.0
+
+# Logging & CORS
+python-json-logger==2.0.7
+fastapi-cors==0.0.6
